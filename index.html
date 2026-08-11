@@ -33,14 +33,14 @@
 
 
   /* ===== deck shell ===== */
-  .deck{position:relative;height:100vh;width:100vw;overflow:hidden;background:var(--cream);padding-top:30px}
-  .slide{position:absolute;inset:30px 0 0 0;opacity:0;visibility:hidden;
+  .deck{position:relative;height:100vh;height:100dvh;width:100vw;overflow:hidden;background:var(--cream);padding-top:env(safe-area-inset-top,0px)}
+  .slide{position:absolute;inset:calc(52px + env(safe-area-inset-top,0px)) 0 0 0;opacity:0;visibility:hidden;
     transition:opacity .5s cubic-bezier(.4,0,.2,1);overflow-y:auto}
   .slide.active{opacity:1;visibility:visible}
   .slide-inner{max-width:1120px;margin:0 auto;padding:64px 56px 130px;min-height:100%}
 
   /* ===== top bar ===== */
-  .topbar{position:fixed;top:30px;right:0;left:0;height:52px;z-index:60;
+  .topbar{position:fixed;top:env(safe-area-inset-top,0px);right:0;left:0;height:52px;z-index:60;
     background:rgba(27,42,74,.97);backdrop-filter:blur(8px);display:flex;align-items:center;
     justify-content:space-between;padding:0 22px;color:#fff}
   .topbar .brand{font-size:14px;color:var(--gold-l);font-weight:700;letter-spacing:.3px}
@@ -212,6 +212,20 @@
     /* slide padding */
     .slide-inner{padding:60px 20px 120px}
     .slide-inner.wide{max-width:100%}
+    /* images: full width on phone, not 70% */
+    .media-hero{max-width:100%;margin:14px auto}
+    .media{margin:16px 0}
+    .media-rail{max-width:100%}
+    /* captions under photos: clear breathing room (was negative margin) */
+    .cap{margin-top:12px;margin-bottom:24px;font-size:12.5px;line-height:1.5;padding:0 4px}
+    /* chips (~2,000 dunam etc.): fit cleanly, wrap with even gaps */
+    .chips{gap:8px;margin:16px 0}
+    .chip{padding:8px 14px;font-size:13px}
+    /* source link banners: fit phone width, comfortable spacing */
+    .srcwrap{margin-top:22px}
+    .srcbtns{gap:8px}
+    .srcbtn{padding:10px 14px;font-size:13px;flex:1 1 auto;justify-content:center;min-width:0}
+    .srclabel{margin-bottom:10px}
     /* cover: keep text clear of the fixed bottom nav + iOS safe area */
     .cover-body{padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}
     .cover .meta{margin-bottom:0}
