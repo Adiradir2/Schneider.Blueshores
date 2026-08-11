@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>חוף התכלת — מצגת השקעה | קבוצת שניידר נדל"ן</title>
 <style>
   @font-face{
@@ -187,9 +187,9 @@
     border-top:1px solid var(--line);padding-top:18px}
 
   /* ===== nav ===== */
-  .nav{position:fixed;bottom:0;right:0;left:0;height:64px;z-index:60;background:#fff;
+  .nav{position:fixed;bottom:0;right:0;left:0;min-height:64px;z-index:60;background:#fff;
     border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;
-    padding:0 22px;box-shadow:0 -8px 30px rgba(27,42,74,.06)}
+    padding:0 22px;padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -8px 30px rgba(27,42,74,.06)}
   .nav .dots{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;flex:1;padding:0 16px}
   .nav .dot{width:10px;height:10px;border-radius:50%;background:var(--line);cursor:pointer;
     transition:.2s;border:0;padding:0}
@@ -212,6 +212,9 @@
     /* slide padding */
     .slide-inner{padding:60px 20px 120px}
     .slide-inner.wide{max-width:100%}
+    /* cover: keep text clear of the fixed bottom nav + iOS safe area */
+    .cover-body{padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}
+    .cover .meta{margin-bottom:0}
     /* typography scale for phone */
     h1.big{font-size:32px}
     h2.sec{font-size:25px;line-height:1.22}
