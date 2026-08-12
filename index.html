@@ -125,6 +125,9 @@
   .chips{display:flex;flex-wrap:wrap;gap:11px;margin:22px 0}
   .chip{background:#fff;color:var(--navy);border:1.5px solid var(--line);border-radius:24px;
     padding:9px 18px;font-size:14.5px;font-weight:700;box-shadow:var(--shadow-s)}
+  .chip-link{background:var(--navy);color:#fff;border-color:var(--navy);text-decoration:none;
+    cursor:pointer;transition:.18s;display:inline-block}
+  .chip-link:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
   .chip.gold{background:var(--gold);color:var(--navy);border-color:var(--gold)}
   .chip.navy{background:var(--navy);color:#fff;border-color:var(--navy)}
   .chip.teal{background:var(--teal);color:#fff;border-color:var(--teal)}
@@ -136,8 +139,9 @@
   .srcbtn{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);
     border-radius:10px;padding:11px 17px;font-size:14px;color:var(--navy);text-decoration:none;
     font-weight:700;transition:.18s;box-shadow:var(--shadow-s)}
+  .srccta{color:var(--gold);font-weight:800;white-space:nowrap}
   .srcbtn:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:var(--shadow)}
-  .srcbtn::after{content:"↗";color:var(--gold-d);font-size:13px}
+  .srcbtn::after{content:"";display:none}
   .srcbtn.gov{background:var(--navy);color:#fff;border-color:var(--navy)}
   .srcbtn.gov::after{color:var(--gold-l)}
 
@@ -348,15 +352,15 @@ var DECK = [
       '<img class="logo-inline" src="'+LOGO+'" alt="Schneider Real Estate">'+
       '<p class="body">'+(he?'חברי הקבוצה נמנים על בעלי מקצוע מהשורה הראשונה — מנכ"לים, מהנדסים ואנשי עסקים. את הקבוצה מלווה משפטית עורכי הדין פירון, מהמובילים בישראל, אשר בין חבריו נמנים גם רוכשים בקבוצה עצמה — כמו כל שותף אחר. כל השותפים חתומים תחת אותו הסכם שיתוף, ומכאן אינטרס משותף אחד: תכנון מיטבי, בנייה איכותית ותוצר סופי של בניינים ודירות ברמה גבוהה.':'The group brings together first-rate professionals — CEOs, engineers and businesspeople. It is supported legally by Firon, one of Israel\'s leading law firms, several of whose own partners are buyers in the group — just like any other partner. All partners sign the same sharing agreement, creating one shared interest: optimal planning, quality construction and a high-end final product of buildings and apartments.')+'</p>'+
       '<div class="chips">'+
-        '<span class="chip">'+(he?'ליווי משפטי · משרד עורכי הדין פירון':'Legal counsel · Firon Law Firm')+'</span>'+
+        '<a class="chip chip-link" href="https://www.firon.co.il/he/" target="_blank" rel="noopener">'+(he?'ליווי משפטי · משרד עורכי הדין פירון — לחצו כאן לאתר החברה':'Legal counsel · Firon Law Firm — click here for their site')+'</a>'+
         '<span class="chip navy">'+(he?'מהנדסים ומתכננים':'Engineers & planners')+'</span>'+
         '<span class="chip">'+(he?'מנכ"לים ואנשי עסקים':'CEOs & businesspeople')+'</span>'+
         '<span class="chip teal">'+(he?'אינטרס משותף לתוצר איכותי':'Shared interest in a quality outcome')+'</span>'+
       '</div>'+
       '<p class="body">'+(he?'קבוצת שניידר נדל"ן מביאה עמה ניסיון של כ־30 שנה בתחום הנדל"ן, ובעיקר בהרצליה — לרבות הקמת שכונת האירוסים ושכונת הזמר העברי בעיר, שהושלמו בהצלחה. הקבוצה משמשת כחברת הניהול ומלווה את התהליך ליווי מקצועי מלא.':'Schneider Real Estate Group brings roughly 30 years of experience in real estate, mainly in Herzliya — including the successful development of the Irisim and Zemer Ha\'Ivri neighborhoods. The group serves as the management company and provides full professional support throughout the process.')+'</p>';
     },
-    srclabel:L('הקבוצה:','The group:'),
-    srcs:[{t:L('קבוצת שניידר נדל"ן','Schneider Real Estate Group'), u:"https://schgroup.co.il"}]
+    srclabel:L('אתר הקבוצה:','The group\'s website:'),
+    srcs:[{t:L('אתר קבוצת שניידר נדל"ן','Schneider Real Estate Group site'), u:"https://schgroup.co.il"}]
   },
 
   { type:"content", wide:true,
@@ -367,7 +371,7 @@ var DECK = [
       '<div class="morph media-hero" id="morphBox" onclick="toggleMorph()">'+
         '<img class="morph-img morph-now" src="'+LAND+'" alt="The land today">'+
         '<img class="morph-img morph-plan" src="'+MAP+'" alt="Planned master plan">'+
-        '<div class="morph-badge" id="morphBadge">'+(he?'היום · קרקע חקלאית ◂ לחצו':'Today · Agricultural land ◂ Click')+'</div>'+
+        '<div class="morph-badge" id="morphBadge">'+(he?'לתוכנית המאושרת לחצו ◂':'Click for the approved plan ◂')+'</div>'+
       '</div>'+
       '<div class="cap">'+(he?'מבט מדרום · המרינה והעיר ברקע. לחיצה מציגה את תכנית המתחם (הר/2200/א\') — מסומנים: המרינה, מחלף הרב מכר, פארק חופי וגבול תל אביב.':'View from the south · marina and city in the background. Click to reveal the master plan (Har/2200/A) — marked: the marina, Rav-Mecher interchange, coastal park and the Tel Aviv boundary.')+'</div>'+
       '<div class="chips">'+
@@ -532,8 +536,9 @@ var DISC = L(
 /* ================= RENDER ================= */
 function srcBtns(arr){
   if(!arr||!arr.length) return "";
+  var cta = (LANG==='he') ? 'לחצו כאן' : 'Click here';
   return arr.map(function(s){
-    return '<a class="srcbtn'+(s.gov?" gov":"")+'" href="'+s.u+'" target="_blank" rel="noopener">'+tx(s.t)+'</a>';
+    return '<a class="srcbtn'+(s.gov?" gov":"")+'" href="'+s.u+'" target="_blank" rel="noopener">'+tx(s.t)+' <span class="srccta">· '+cta+'</span></a>';
   }).join("");
 }
 function renderSlide(s){
@@ -580,8 +585,8 @@ function applyLang(){
   var box=document.getElementById('morphBox');
   if(badge){
     var flipped = box && box.classList.contains('flipped');
-    if(he) badge.innerHTML = flipped?'החזון · המתחם המתוכנן ▸ לחצו לחזרה':'היום · קרקע חקלאית ◂ לחצו';
-    else   badge.innerHTML = flipped?'Vision · planned complex ▸ click to return':'Today · Agricultural land ◂ Click';
+    if(he) badge.innerHTML = flipped?'לתמונת הקרקע לחצו ▸':'לתוכנית המאושרת לחצו ◂';
+    else   badge.innerHTML = flipped?'Click for the land photo ▸':'Click for the approved plan ◂';
   }
 }
 function setLang(l){
@@ -645,8 +650,8 @@ function toggleMorph(){
   box.classList.toggle("flipped");
   var he=(LANG==="he");
   var flipped=box.classList.contains("flipped");
-  if(he) badge.innerHTML = flipped?"החזון · המתחם המתוכנן ▸ לחצו לחזרה":"היום · קרקע חקלאית ◂ לחצו";
-  else   badge.innerHTML = flipped?"Vision · planned complex ▸ click to return":"Today · Agricultural land ◂ Click";
+  if(he) badge.innerHTML = flipped?"לתמונת הקרקע לחצו ▸":"לתוכנית המאושרת לחצו ◂";
+  else   badge.innerHTML = flipped?"Click for the land photo ▸":"Click for the approved plan ◂";
 }
 
 // ---- touch swipe (mobile) ----
