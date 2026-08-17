@@ -71,6 +71,13 @@
   html[dir="ltr"] ul.pts li::before{right:auto;left:4px}
   .warn{background:#FFFBF0;border:1px solid var(--gold-l);border-radius:12px;padding:14px 18px;
     margin:18px 0;font-size:15px;color:#6b5300;max-width:770px}
+  .statusbox{background:linear-gradient(135deg,#FBF4DE,#FDF9EE);border:2px solid var(--gold);
+    border-radius:14px;padding:18px 22px;margin:0 0 22px;max-width:820px;box-shadow:var(--shadow-s)}
+  .statusbox .sb-tag{display:inline-block;background:var(--navy);color:var(--gold-l);font-weight:800;
+    font-size:12.5px;letter-spacing:.4px;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+  .statusbox .sb-body{font-size:16px;line-height:1.6;color:var(--ink)}
+  .statusbox .sb-body b{color:var(--navy)}
+  html[dir="ltr"] .statusbox{margin-left:0}
   .warn b{color:#5a4600}
 
   /* ===== media ===== */
@@ -368,6 +375,10 @@ var DECK = [
     h:L('רובע עירוני חדש על קו החוף','A New Seaside Urban District'),
     lead:L('רצועת חוף פתוחה בין הים לעיר — מהקרקעות המבוקשות בישראל, בין מרינה הרצליה לגבול תל אביב. לחצו על התמונה כדי לראות את החזון.','An open coastal strip between the sea and the city — among the most sought-after land in Israel, between Herzliya Marina and the Tel Aviv boundary. Click the image to see the vision.'),
     html:function(lang){ var he=(lang==='he'); return ''+
+      '<div class="statusbox">'+
+        '<div class="sb-tag">'+(he?'הסטטוס התכנוני':'Planning status')+'</div>'+
+        '<div class="sb-body">'+(he?'תוכנית המתאר "חוף התכלת" (הר/2200/א\') <b>אושרה למתן תוקף בפברואר 2022</b> — הבסיס לוודאות לגבי הייעוד והזכויות. מכאן, הדרך להיתרי בנייה עוברת בהשלמת <b>תוכנית מפורטת הכוללת איחוד וחלוקה</b>. במקביל נחתם <b>הסכם גג</b> עם המדינה למימון הפיתוח והתשתיות.':'The "Blue Shores" master plan (Har/2200/A) was <b>approved for validity in February 2022</b> — the basis for certainty on land use and rights. From here, the path to building permits runs through completing a <b>detailed plan including consolidation &amp; division</b>. In parallel, an <b>agreement</b> was signed with the State to fund development and infrastructure.')+'</div>'+
+      '</div>'+
       '<div class="morph media-hero" id="morphBox" onclick="toggleMorph()">'+
         '<img class="morph-img morph-now" src="'+LAND+'" alt="The land today">'+
         '<img class="morph-img morph-plan" src="'+MAP+'" alt="Planned master plan">'+
